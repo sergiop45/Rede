@@ -1,0 +1,32 @@
+<!DOCTYPE html>
+<html lang="pt-br">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>F-socity</title>
+    <link rel="stylesheet" href="style.css">
+</head>
+<body>
+
+    <header>
+        
+        <img src="logo.jpg" alt="logo F-socity">
+
+        <div>
+            <% if(user.user != undefined) { %>
+            <a><%= user.user %></a>
+            <% } %>     
+            <a href="">Publicar</a>
+            <a href="">Feed</a>
+            <a href="http://localhost:1015/logout">Sair</a>
+        </div>
+
+    </header>
+
+    <main>
+        <h1>Bem vindo a F-socity <%= user.user %></h1>
+    </main>
+    
+</body>
+</html>

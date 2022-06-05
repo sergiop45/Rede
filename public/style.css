@@ -1,0 +1,32 @@
+body {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+    background-color: #DDA0DD;
+}
+
+header {
+    display: flex;
+    justify-content: space-between;
+    background-color: black;
+    align-items: center;
+}
+header img {
+    height: 70px;
+}
+header a {
+    color: #6600ff;
+    font-weight: bold;
+    font-size: 18px;
+    margin-right: 5px;
+    text-decoration: none;
+    transition: 0.3s;
+}
+header a:hover {
+    text-decoration: underline;
+    font-size: 19px;
+}
+main {
+    text-align: center;
+    background-color: #DDA0DD;
+}
