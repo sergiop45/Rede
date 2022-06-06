@@ -1,0 +1,36 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Login</title>
+    <link rel="stylesheet" href="/public/css/style.css">
+</head>
+<body>
+    <div class="box">
+        <form action="http://localhost:1015/authenticate" method="post">
+            <h1 class="letra-degrade">LOGIN</h1>
+            <div class="form">
+                <div class="forms">
+                    <div class="form-item">
+                        <input class="input-grupo" name="user" type="text" id="login" required autocomplete="off">
+                        <label class="placeholder" for="login">login</label>
+                    </div>
+                    <div class="form-item">
+                        <input class="input-grupo" name="password" type="password" id="password" required autocomplete="off">
+                        <label class="placeholder" for="password">senha</label>
+                    </div>
+                </div>
+                <div class="botao">
+                    <input class="click" type="submit" value="entrar">
+                </div>
+                <div class="registrar">
+                    <p class="nao-tem-uma-conta">Não tem uma conta?</p>
+                    <a href="http://localhost:1015/registro" class="letra-degrade registre-se">Registre-se</a>
+                </div>
+            <div>
+        </form>
+    </div>
+</body>
+</html>
