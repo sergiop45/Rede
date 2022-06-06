@@ -10,21 +10,30 @@
     display: flex;
     justify-content: center;
     align-items: center;
-    background: rgb(255, 255, 255);
+    background: linear-gradient(
+    to bottom,  #9900ff, 
+                #8c00ff,
+                #8000ff,
+                #7300ff,
+                #6600ff,
+                #5900ff,
+                #4d00ff,
+                #4000ff,
+                #3300ff);
 }
 form {
     display: flex;
     flex-direction: column;
-    width: 350px;
-    height: 300px;
+    width: 350px;   
     align-items: center;
     box-sizing: border-box;
-    box-shadow: 0px 0px 10px 5px gray;
+    box-shadow: 0px 0px 10px 5px rgb(29, 29, 29);
     padding-top: 50px;
-    background: #000003;
+    background: #1b1b1b;
     border-radius: 5px;
 }
-form h1 {
+.letra-degrade {
+    font-weight: 700;
     background: linear-gradient(
     to bottom,  #9900ff, 
                 #8c00ff,
@@ -55,7 +64,7 @@ input {
     box-sizing: border-box;
     display: block;
     width: 100%;
-    padding: 8px 18px;
+    padding: 7px 18px;
     border-radius: 5px;
     border: 1px solid gray;
     font-size: 12px;
@@ -64,6 +73,7 @@ input:valid {
     border: 1px solid #5900ff;
 }
 .form-item .placeholder {
+    display: block;
     position: absolute;
     top: 17px;
     left: 18px;
@@ -100,4 +110,16 @@ input:valid {
                                 #4d00ff,
                                 #4000ff,
                                 #3300ff);
+}
+.registrar {
+    display: flex;
+    flex-flow: column wrap;
+    color: white;
+    align-items: center;
+    justify-content: center;
+    font-size: 14px;
+    text-align: center;
+}
+.form-registro {
+    height: 320px;
 }
