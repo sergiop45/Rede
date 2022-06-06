@@ -1,0 +1,40 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Registro</title>
+    <link rel="stylesheet" href="/public/css/style.css">
+</head>
+<body>
+    <div class="box">
+        <form action="http://localhost:1015/user" method="post">
+            <h1 class="letra-degrade">REGISTRO</h1>
+            <div class="form form-registro">
+                <div class="forms">
+                    <div class="form-item">
+                        <input class="input-grupo" type="text" id="login" name="user" required autocomplete="off">
+                        <label class="placeholder" for="login">nome</label>
+                    </div>
+                    <div class="form-item">
+                        <input class="input-grupo" type="text" id="email" name="user" required autocomplete="on">
+                        <label class="placeholder" for="login">email</label>
+                    </div>
+                    <div class="form-item">
+                        <input class="input-grupo" type="password"  name="password" id="password" required autocomplete="off">
+                        <label class="placeholder" for="password">senha</label>
+                    </div>
+                    <div class="form-item">
+                        <input class="input-grupo" type="password"  name="password" id="password" required autocomplete="off">
+                        <label class="placeholder" for="password">repita a senha</label>
+                    </div>
+                </div>
+                <div class="botao">
+                    <input class="click" type="submit" value="Registrar">
+                </div>
+            <div>
+        </form>
+    </div>
+</body>
+</html>
