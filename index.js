@@ -6,6 +6,8 @@ const User = require("./models/User")
 const bodyParser = require("body-parser")
 const UsersController = require("./controllers/UsersControllers")
 const session = require("express-session")
+const PostsController = require("./controllers/PostsController")
+const CommentsController = require("./controllers/CommentsController")
 
 
 connection.authenticate().then(() => {
@@ -27,6 +29,8 @@ app.use(session({
 }));
 
 app.use("/", UsersController)
+app.use("/", PostsController)
+app.use("/", CommentsController)
 
 
 

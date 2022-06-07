@@ -2,10 +2,13 @@ const express = require("express")
 const Router = express.Router()
 const bcrypt = require("bcryptjs")
 const User = require("../models/User")
+const Post = require("../models/Post")
 
 Router.get("/home", (req, res) => {
     if (req.session.user != undefined) {
-        res.render("publicacoes/home", {user: req.session.user})
+        Post.findAll().then(posts => {
+            res.render("publicacoes/home", {posts: posts, user: req.session.user})
+        })
     } else {
         res.render("publicacoes/home2")
     }

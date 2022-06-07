@@ -17,8 +17,8 @@
             <% if(user.user != undefined) { %>
             <a><%= user.user %></a>
             <% } %>     
-            <a href="http://localhost:1015/newpost">Publicar</a>
-            <a href="http://localhost:1015/home">Feed</a>
+            <a href="">Publicar</a>
+            <a href="">Feed</a>
             <a href="http://localhost:1015/logout">Sair</a>
         </div>
 
@@ -26,19 +26,17 @@
 
     <main>
         <h1>Bem vindo a F-socity <%= user.user %></h1>
-        <br>
-        <br>
-        
-        <div id="feed">
-            <br>
-            <% posts.forEach( post => {  %>
-            <div id="post">
-                <p> <%= post.post %>  </p>
-            </div>
-            <% }) %>
-            <br>
-        </div>
-
+       <br>
+       <br>
+       <form action="http://localhost:1015/post" method="post">
+           <br>
+           <input type="hidden" name="userid" value="<%= user.id %>">
+           <label for="">Nova Publicação: </label>
+           <br>
+           <textarea name="post" id="newPost" cols="30" rows="10"></textarea>
+           <br>
+           <button>Publicar</button>
+       </form>
     </main>
     
 </body>
