@@ -4,29 +4,51 @@
     <meta charset="UTF-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>LOGIN</title>
-    <link rel="stylesheet" href="css/style.css">
+    <title>Registro</title>
+    <link rel="stylesheet" href="css/style-registro.css">
 </head>
 <body>
     <div class="box">
         <form action="http://localhost:1015/user" method="post">
-            <h1>REGISTRO</h1>
-            <div class="form">
+            <h1 class="letra-degrade">REGISTRO</h1>
+            <div class="form form-registro">
                 <div class="forms">
                     <div class="form-item">
-                        <input class="input-grupo" type="text" id="login" name="user" required autocomplete="off">
-                        <label class="placeholder" for="login">login</label>
+                        <input class="input-grupo" type="text" id="login" name="user" required autocomplete="on" placeholder=".">
+                        <label class="placeholder" for="login">nome</label>
                     </div>
                     <div class="form-item">
-                        <input class="input-grupo" type="password"  name="password" id="password" required autocomplete="off">
+                        <input class="input-grupo" type="email" id="email" name="" required autocomplete="on" placeholder=".">
+                        <label class="placeholder" for="login">email</label>
+                    </div>
+                    <div class="form-item">
+                        <input class="input-grupo" type="password" id="password" name="password" required placeholder=".">
                         <label class="placeholder" for="password">senha</label>
+                    </div>
+                    <div class="form-item">
+                        <input class="input-grupo" type="password" id="password-confirmation" required placeholder=".">
+                        <label class="placeholder" for="password-confirmation">repita a senha</label>
                     </div>
                 </div>
                 <div class="botao">
-                    <input class="click" type="submit" value="Registrar">
+                    <input class="click" type="submit">
                 </div>
             <div>
         </form>
     </div>
+    <script >
+        var password = document.getElementById("password"), confirm_password = document.getElementById("password-confirmation");
+
+    function validatePassword(){
+        if (password.value != confirm_password.value) {
+            confirm_password.setCustomValidity("Senhas diferentes!");
+        } else {
+            confirm_password.setCustomValidity('');
+        }
+    }
+
+    password.onchange = validatePassword;
+    confirm_password.onkeyup = validatePassword;
+    </script>
 </body>
 </html>

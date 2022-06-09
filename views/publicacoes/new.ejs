@@ -6,6 +6,38 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>F-socity</title>
     <link rel="stylesheet" href="style.css">
+    <style>
+        textarea {
+            border-radius: 15px;
+            margin-top: 20px;
+            box-shadow: 0 0 1em black;
+            padding: 10px;
+        }
+        .botao {
+        display: flex;
+        justify-content: center;
+        margin-top: 10px;
+        }
+        .click {
+        padding: 8px;
+        width: 120px;
+        align-self: center;
+        cursor: pointer;
+        color: aliceblue;
+        font-weight: 700;
+        border-radius: 10px;
+        background: linear-gradient(
+                                    #9900ff, 
+                                    #8c00ff,
+                                    #8000ff,
+                                    #7300ff,
+                                    #6600ff,
+                                    #5900ff,
+                                    #4d00ff,
+                                    #4000ff,
+                                    #3300ff);   
+        }
+    </style>
 </head>
 <body>
 
@@ -17,25 +49,27 @@
             <% if(user.user != undefined) { %>
             <a><%= user.user %></a>
             <% } %>     
-            <a href="">Publicar</a>
-            <a href="">Feed</a>
+            <a href="http://localhost:1015/newpost">Publicar</a>
+            <a href="http://localhost:1015/post">Feed</a>
             <a href="http://localhost:1015/logout">Sair</a>
         </div>
 
     </header>
 
     <main>
-        <h1>Bem vindo a F-socity <%= user.user %></h1>
+        <h1> New Post </h1>
        <br>
        <br>
        <form action="http://localhost:1015/post" method="post">
            <br>
            <input type="hidden" name="userid" value="<%= user.id %>">
-           <label for="">Nova Publicação: </label>
+           <label for=""> <%= user.user %> Aqui você pode compartilhar com todos: </label>
            <br>
            <textarea name="post" id="newPost" cols="30" rows="10"></textarea>
            <br>
-           <button>Publicar</button>
+           <div class="botao">
+            <input class="click" type="submit" value="Publicar">
+             </div>
        </form>
     </main>
     
