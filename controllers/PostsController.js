@@ -5,9 +5,26 @@ const User = require("../models/User")
 
 Router.get("/post", (req, res) => {
     
+    if (req.session.user != undefined ) {
+        
     Post.findAll().then(posts => {
-        res.render("publicacoes/home", {posts: posts, user: req.session.user})
+        User.findAll().then( users => {
+
+            if (users != undefined) {
+                res.render("publicacoes/home", {users: users, posts: posts, user: req.session.user})
+
+            }
+            else {
+                res.render("publicacoes/home", {posts: posts, user: req.session.user})
+            }
+        
+        })
+        
     })
+    }else {
+        res.render("publicacoes/home2")
+    }
+
 
 })
 
@@ -21,9 +38,6 @@ Router.get("/newpost", (req, res) => {
 Router.post("/post", (req, res) => {
     var userid = req.body.userid
     var post = req.body.post
-    
-   console.log(userid)
-   console.log(post)
 
     Post.create({
         userId: userid,

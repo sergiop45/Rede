@@ -33,7 +33,13 @@
             <br>
             <% posts.forEach( post => {  %>
             <div id="post">
-                <p> <%= post.post %>  </p>
+                <% users.forEach( users => { %>
+                    <% if (post.userId == users.id) { %>
+                <p>User: <%= users.user %> </p>
+                    <%}%>
+                <%})%>
+                <p>Post: <%= post.post %>  </p>
+                <br>
             </div>
             <% }) %>
             <br>

@@ -5,14 +5,28 @@ const User = require("../models/User")
 const Post = require("../models/Post")
 
 Router.get("/home", (req, res) => {
+
+
     if (req.session.user != undefined) {
-        Post.findAll().then(posts => {
-            res.render("publicacoes/home", {posts: posts, user: req.session.user})
+        Post.findAll({order:[ [ 'id','DESC']]}).then(posts => {
+            User.findAll().then( users => {
+    
+                if (users != undefined) {
+                    res.render("publicacoes/home", {users: users, posts: posts, user: req.session.user})
+    
+                }
+                else {
+                    res.render("publicacoes/home", {posts: posts, user: req.session.user})
+                }
+            
+            })
+            
         })
     } else {
         res.render("publicacoes/home2")
     }
 
+   
     
 })
 
