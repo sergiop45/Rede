@@ -25,8 +25,12 @@
                 <div class="botao">
                     <input class="click" type="submit" value="entrar">
                 </div>
+                <% if(msg != "") { %>
+                    <p style="color: red; font-size: 10px; text-align: center;"><%= msg %></p>
+                <% } %> 
                 <a href="http://localhost:1015/registro" 
                 style="font-size: 10px; margin-left: 40%; color: aqua;">Registra-se</a>
+                   
             <div>
         </form>
     </div>

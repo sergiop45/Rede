@@ -31,11 +31,23 @@ Router.get("/home", (req, res) => {
 })
 
 Router.get("/login", (req, res) => {
-    res.render("user/login")
+    if (req.session.user != undefined) {
+        res.redirect("/home")
+    } else {
+        res.render("user/login", {msg: " "})
+
+    }
 })
 
 Router.get("/registro", (req, res) => {
-    res.render("user/registro")
+
+    if (req.session.user != undefined) {
+        res.redirect("/home")
+    } else {
+        res.render("user/registro") 
+    }
+
+    
 })
 
 Router.post("/user", (req, res) => {
@@ -46,7 +58,7 @@ Router.post("/user", (req, res) => {
     User.findOne({where: {user:user}}).then(verificaUser => {
         
         if(verificaUser) {
-            res.send("voce ja tem cadastro faça login ")
+            res.render("user/login", {msg: "Usuario ja registrado! Faça login"})
         } else {
 
             var salt = bcrypt.genSaltSync(10)
@@ -55,17 +67,13 @@ Router.post("/user", (req, res) => {
             User.create({
                 user: user,
                 password: hash
-            }).then(() => console.log("usuario registrado!"))
-            .catch(() => console.log("erro ao cadastrar usuario"))
-
-        }
+            }).then(() => res.redirect("/login"))
+            .catch(() =>  res.render("user/login", {msg: "Erro ao tentar registrar! tente de novo"}) 
+            )}
         
     })
     
-    console.log(user)
-    console.log(password)
-
-    res.redirect("/login")
+    
 
 })
 
@@ -85,10 +93,11 @@ Router.post("/authenticate", (req, res) => {
                 }
                 res.redirect("/home")
             } else {
-                res.send("usuario ou senha incorretos")
+                res.render("user/login", {msg:"usuario ou senha incorretos"})
             }
         } else {
-            res.send("usuario nao exite")
+            res.render("user/login", {msg:"usuario nao existe"})
+
         }
 
     })

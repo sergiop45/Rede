@@ -8,7 +8,7 @@ Router.get("/post", (req, res) => {
     if (req.session.user != undefined ) {
         
     Post.findAll().then(posts => {
-        User.findAll().then( users => {
+        User.findAll({order: ['id', 'DESC']}).then( users => {
 
             if (users != undefined) {
                 res.render("publicacoes/home", {users: users, posts: posts, user: req.session.user})

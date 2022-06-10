@@ -1,10 +1,12 @@
-body {
+* {
     margin: 0;
     padding: 0;
     box-sizing: border-box;
-    background-color: #DDA0DD;
+    
 }
-
+body {
+    background-color: black;
+}
 header {
     display: flex;
     justify-content: space-between;
@@ -28,5 +30,35 @@ header a:hover {
 }
 main {
     text-align: center;
-    background-color: #DDA0DD;
+    background: linear-gradient(
+    to bottom,  #9900ff, 
+                #8c00ff,
+                #8000ff,
+                #7300ff,
+                #6600ff,
+                #5900ff,
+                #4d00ff,
+                #4000ff,
+                #3300ff);;
+}
+#feed {
+    display: flex;
+    flex-direction: column;
+    margin: 0 auto;
+    text-align: center;
+    width: 50%;
+}
+#post {
+    background-color: antiquewhite;
+    color: black;
+    font-size: 15px;
+    font-weight: bold;
+    text-align: start;
+    margin-bottom: 25px;
+    padding: 10px;
+    display: flex;
+    flex-direction: column;
+    border-radius: 10px;
+    box-shadow: 0 0 1em black;
+
 }
