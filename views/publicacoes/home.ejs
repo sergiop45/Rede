@@ -6,47 +6,171 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>F-socity</title>
     <link rel="stylesheet" href="style.css">
-    
+    <script src="https://kit.fontawesome.com/e38e078162.js" crossorigin="anonymous"></script>
 </head>
 <body>
 
     <header>
         
         <img src="logo.jpg" alt="logo F-socity">
-
+        <h1 id="wellcome"> F-socity </h1>
         <div>
             <% if(user.user != undefined) { %>
-            <a><%= user.user %></a>
+            <a><i class="fa-solid fa-user"></i> <%= user.user %></a>
             <% } %>     
             <a href="http://localhost:1015/newpost">Publicar</a>
             <a href="http://localhost:1015/home">Feed</a>
-            <a href="http://localhost:1015/logout">Sair</a>
+            <a href="http://localhost:1015/logout"><i class="fa-solid fa-arrow-right-from-bracket"></i></a>
         </div>
 
     </header>
 
     <main>
-        <h1>Bem vindo a F-socity <%= user.user %></h1>
-        <br>
-        <br>
         
+        
+       
         <div id="feed">
+            <div id="newpost" >
+           
+                <form action="http://localhost:1015/post" method="post">
+                    <br>
+                    <input type="hidden" name="userid" value="<%= user.id %>">
+                    <label for=""> <%= user.user %> Aqui você pode compartilhar com todos: </label>
+                    <br>
+                    <textarea name="post" id="newPost" cols="50" rows="4"></textarea>
+                    <br>
+                    <button class="btnComentar" >Publicar</button>
+                </form>
+                <br>
+                <br >
+             </div>
             <br>
             <% posts.forEach( post => {  %>
             <div id="post">
                 <% users.forEach( users => { %>
                     <% if (post.userId == users.id) { %>
-                <p>User: <%= users.user %> </p>
+                <p><i class="fa-solid fa-user"></i> <%= users.user %> </p>
                     <%}%>
                 <%})%>
-                <p>Post: <%= post.post %>  </p>
                 <br>
+                <p><i class="fa-solid fa-thought-bubble"></i> <%= post.post %>  </p>
+                <br>
+                <div class="acoes">
+                    
+                    <a href="http://localhost:1015/like/<%= post.id %>"><i id="like" class="fa-solid fa-thumbs-up"></i></a>
+                    <a href="http://localhost:1015/deslike/<%= post.id %>" id="deslike"><i class="fa-solid fa-hand-middle-finger"></i></a>
+                    <p style="margin-left: 5px;">   Likes:  <%= post.like %></p>
+                    <br>
+                    <button id="<%= post.id%>" class="btnComentar" onclick="comentar(this)">  Comentar</button>
+                    <button id="<%= post.id%>" class="verComentarios" onclick="verComentarios(this)">Comentarios</button>
+                
+                </div>
+                <div class="comentar invisible" id="formComentar<%= post.id%>"  >
+                    <br>
+                    <form action="http://localhost:1015/comment" method="post">
+                        <input type="hidden" value="<%= post.id %>" name="postId">
+                        <input type="hidden" value="<%= user.id %>" name="userId">
+                        <textarea name="comment" class="textComment" cols="30" rows="4"></textarea>
+                       
+                        <button class="btnComentar">comentar</button>
+                    </form>
+                    <br>
+                </div>
+                <div class="comentarios invisible" id="comentarios<%=post.id%>" >
+                <% comments.forEach( comments => { %>
+
+                   
+                    <div class="comentario">
+
+                    <% if (post.id == comments.postId) { %>
+                        
+                        <% users.forEach( users => { %>
+                            
+                            <% if (comments.userId == users.id) { %>
+                                <p><i class="fa-solid fa-user"></i> <%= users.user %> </p>
+                            <%}%>
+
+                        <%})%>
+                        <p style="border-bottom: 1px solid black;"><%= comments.comment %></p>
+                   
+                    <% } %> 
+                   
+                    </div>
+                   
+                <%}) %>   
+                    
+                </div>
             </div>
             <% }) %>
             <br>
         </div>
-
+           
     </main>
-    
 </body>
+<script>
+    let x = 0
+    
+    function comentar(element) {
+        let postid = element.getAttribute("id")
+        let formComentar = document.querySelector("#formComentar"+postid)
+        if (x == 0) {
+            formComentar.classList.remove("invisible")
+            
+           // formComentar.style = "display: default;"
+            x++
+        } else {
+          //  formComentar.style = "display: none;"
+            formComentar.classList.add("invisible")
+            x--
+        }
+        
+     }
+
+    
+     let y = 0 
+
+    function verComentarios(element) {
+        let postid = element.getAttribute("id")
+        let comentarios = document.querySelector("#comentarios"+postid)
+        
+        if (y == 0) {
+           // comentarios.style = "display: default;"
+           comentarios.classList.remove("invisible")
+            y++
+        } else {
+         //   comentarios.style = "display: none;"
+            comentarios.classList.add("invisible")
+            y--
+        }
+        
+     }
+
+    
+     let wellcome = document.querySelector("#wellcome")
+     let textwellcome = wellcome.textContent
+     wellcome.textContent = ""
+     
+     function showtext(el, text, interval ) {
+    
+     var char = text.split("").reverse();
+    
+     var typer = setInterval(function() {
+    
+     if (!char.length) {
+        return clearInterval(typer)
+     }
+      
+     var next = char.pop();
+      
+     el.innerHTML += next;
+      
+    }, interval);
+    
+
+    }
+
+    showtext(wellcome, textwellcome, 100)
+   
+</script>
+
 </html>

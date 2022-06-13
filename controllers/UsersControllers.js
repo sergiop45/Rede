@@ -3,6 +3,7 @@ const Router = express.Router()
 const bcrypt = require("bcryptjs")
 const User = require("../models/User")
 const Post = require("../models/Post")
+const Comment = require("../models/Comment")
 
 Router.get("/home", (req, res) => {
 
@@ -10,16 +11,21 @@ Router.get("/home", (req, res) => {
     if (req.session.user != undefined) {
         Post.findAll({order:[ [ 'id','DESC']]}).then(posts => {
             User.findAll().then( users => {
-    
-                if (users != undefined) {
-                    res.render("publicacoes/home", {users: users, posts: posts, user: req.session.user})
-    
-                }
-                else {
-                    res.render("publicacoes/home", {posts: posts, user: req.session.user})
-                }
+                
+                    if (users != undefined) {
+                        Comment.findAll().then( comment => {
+                        res.render("publicacoes/home", {users: users, posts: posts, user: req.session.user, comments:comment})
+                        })
+                    }
+                    else {
+                        Comment.findAll().then( comment => {
+                        res.render("publicacoes/home", {posts: posts, user: req.session.user, comments:comment})
+                        })
+                    }
+                })
+                
             
-            })
+            
             
         })
     } else {

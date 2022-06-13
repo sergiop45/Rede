@@ -18,6 +18,6 @@ Post.hasMany(Comment) // um post tem varios comentarios
 Comment.belongsTo(Post) //um comentario pertence a um posto
 Comment.belongsTo(User)
 Comment.sync({force: false}).then(() => console.log("tabela comment criada"))
-.catch(() => {console.log("erro ao tentar criar tabela comment")})
+.catch(() => console.log("erro ao tentar criar tabela comment"))
 
-module.exports = Post
+module.exports = Comment
