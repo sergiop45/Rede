@@ -36,6 +36,35 @@ Router.get("/home", (req, res) => {
     
 })
 
+Router.get("/user/perfil", (req, res) => {
+
+    if (req.session.user != undefined) {
+        Post.findAll({order:[ [ 'id','DESC']]}).then(posts => {
+            User.findAll().then( users => {
+                
+                    if (users != undefined) {
+                        Comment.findAll().then( comment => {
+                        res.render("publicacoes/perfil", {users: users, posts: posts, user: req.session.user, comments:comment})
+                        })
+                    }
+                    else {
+                        Comment.findAll().then( comment => {
+                        res.render("publicacoes/perfil", {posts: posts, user: req.session.user, comments:comment})
+                        })
+                    }
+                })
+                
+            
+            
+            
+        })
+    } else {
+        res.render("publicacoes/home2")
+    }
+
+
+})
+
 Router.get("/login", (req, res) => {
     if (req.session.user != undefined) {
         res.redirect("/home")

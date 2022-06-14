@@ -35,7 +35,7 @@
                 <form action="http://localhost:1015/post" method="post">
                     <br>
                     <input type="hidden" name="userid" value="<%= user.id %>">
-                    <label for=""> <%= user.user %> Aqui você pode compartilhar com todos: </label>
+                    <label style="font-weight: bold;"> <%= user.user %> aqui você pode compartilhar com todos: </label>
                     <br>
                     <textarea name="post" id="newPost" cols="50" rows="4"></textarea>
                     <br>
@@ -63,7 +63,17 @@
                     <br>
                     <button id="<%= post.id%>" class="btnComentar" onclick="comentar(this)">  Comentar</button>
                     <button id="<%= post.id%>" class="verComentarios" onclick="verComentarios(this)">Comentarios</button>
-                
+                    
+                    
+                    <% if(user.id === post.userId ) {%>
+                        
+                    <button class="btnEdit">editar</button>
+                    <form action="/post/delete"  style="display: inline-flex;" onsubmit="verificarDelete(event, this)"  method="post">
+                        <input type="hidden" value="<%= post.id%>" name="id">
+                        <button class="btnDelete"  data-id="<%=post.id%>" data-tipo="post" >deletar</button>  
+                    </form>
+                       
+                    <%}%>    
                 </div>
                 <div class="comentar invisible" id="formComentar<%= post.id%>"  >
                     <br>
@@ -92,7 +102,15 @@
 
                         <%})%>
                         <p style="border-bottom: 1px solid black;"><%= comments.comment %></p>
-                   
+                        
+                        <% if(user.id === comments.userId ) {%>
+                            <button class="btnEdit right">editar</button>
+                            <form style="display: inline-flex;" action="http://localhost:1015/comment/delete" onsubmit="verificarDelete(event, this)" method="post">
+                            <input type="hidden" value="<%= comments.id%>" name="id">
+                            <button class="btnDelete" data-tipo="comment">deletar</button>
+                            </form>
+                        <%}%>
+
                     <% } %> 
                    
                     </div>
@@ -108,6 +126,16 @@
     </main>
 </body>
 <script>
+
+function verificarDelete(event, form) {
+        event.preventDefault();
+        var decision = confirm("Deseja Cancelar Comentario?");
+        if (decision) {
+            form.submit();
+        }
+    }
+
+
     let x = 0
     
     function comentar(element) {

@@ -16,6 +16,16 @@ Router.get("/comment/:id", (req, res) => {
     
 })
 
+Router.post("/comment/delete", (req, res) => {
+    let id = req.body.id
+
+    Comment.destroy({where: {id: id}}).then(() => {
+        res.redirect("/home")
+    }).catch(() => {
+        res.redirect("/home")
+    })
+})
+
 Router.post("/comment", (req,res) => {
     var postId = req.body.postId
     var user = req.body.userId

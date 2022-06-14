@@ -8,7 +8,7 @@ const UsersController = require("./controllers/UsersControllers")
 const session = require("express-session")
 const PostsController = require("./controllers/PostsController")
 const CommentsController = require("./controllers/CommentsController")
-
+const mime = require("mime-types")
 
 connection.authenticate().then(() => {
     console.log("conectado ao Banco de dados.")
@@ -17,6 +17,12 @@ connection.authenticate().then(() => {
 })
 
 app.use(express.static('public'));
+
+mime.lookup('json') // 'application/json'
+mime.lookup('.md') // 'text/markdown'
+mime.lookup('file.html') // 'text/html'
+mime.lookup('folder/file.js') // 'application/javascript'
+mime.lookup('folder/file.css')
 
 app.set("view engine", "ejs");
 app.set("views", "./views");
@@ -41,3 +47,4 @@ app.use("/", CommentsController)
 app.listen(port, () => {
     console.log("servidor rodando na porta " + port)
 })
+

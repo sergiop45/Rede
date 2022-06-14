@@ -95,5 +95,13 @@ Router.get("/deslike/:id", (req, res) => {
 
 })
 
+Router.post("/post/delete", (req, res) => {
+    let id = req.body.id
+
+    Post.destroy({where: {id: id}}).then(() => {
+        res.redirect("/home")
+    }).catch(() => res.redirect("/home"))
+})
+
 
 module.exports = Router
