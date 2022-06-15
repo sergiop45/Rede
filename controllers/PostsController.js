@@ -27,7 +27,7 @@ Router.get("/post", (req, res) => {
             
         })
     } else {
-        res.render("publicacoes/home2")
+        res.redirect("/login")
     }
 
 })

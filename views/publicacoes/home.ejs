@@ -13,7 +13,7 @@
     <header>
         
         <img src="logo.jpg" alt="logo F-socity">
-        <h1 id="wellcome"> F-socity </h1>
+        <h1 id="wellcome"> Socialize </h1>
         <div>
             <% if(user.user != undefined) { %>
             <a><i class="fa-solid fa-user"></i> <%= user.user %></a>
@@ -58,8 +58,8 @@
                 <div class="acoes">
                     
                     <a href="http://localhost:1015/like/<%= post.id %>"><i id="like" class="fa-solid fa-thumbs-up"></i></a>
-                    <a href="http://localhost:1015/deslike/<%= post.id %>" id="deslike"><i class="fa-solid fa-hand-middle-finger"></i></a>
-                    <p style="margin-left: 5px;">   Likes:  <%= post.like %></p>
+                    <a href="http://localhost:1015/deslike/<%= post.id %>" id="deslike"><i class="fa-solid fa-thumbs-down"></i></i></a>
+                    <p style="margin: 0 5px; font-size: 10px; width: 50px;" >Likes: <%= post.like %> </p>
                     <br>
                     <button id="<%= post.id%>" class="btnComentar" onclick="comentar(this)">  Comentar</button>
                     <button id="<%= post.id%>" class="verComentarios" onclick="verComentarios(this)">Comentarios</button>
@@ -68,7 +68,7 @@
                     <% if(user.id === post.userId ) {%>
                         
                     <button class="btnEdit">editar</button>
-                    <form action="/post/delete"  style="display: inline-flex;" onsubmit="verificarDelete(event, this)"  method="post">
+                    <form action="/post/delete"  style="display: inline-flex;" onsubmit="verificarDeletePost(event, this)"  method="post">
                         <input type="hidden" value="<%= post.id%>" name="id">
                         <button class="btnDelete"  data-id="<%=post.id%>" data-tipo="post" >deletar</button>  
                     </form>
@@ -97,15 +97,15 @@
                         <% users.forEach( users => { %>
                             
                             <% if (comments.userId == users.id) { %>
-                                <p><i class="fa-solid fa-user"></i> <%= users.user %> </p>
+                                <p style="font-weight: bold; margin:0 5px; background-color: aliceblue;"><i class="fa-solid fa-user"></i> <%= users.user %> </p>
                             <%}%>
 
                         <%})%>
-                        <p style="border-bottom: 1px solid black;"><%= comments.comment %></p>
+                        <p style="font-weight: bold; margin:0 5px; background-color: aliceblue;"><%= comments.comment %></p>
                         
                         <% if(user.id === comments.userId ) {%>
                             <button class="btnEdit right">editar</button>
-                            <form style="display: inline-flex;" action="http://localhost:1015/comment/delete" onsubmit="verificarDelete(event, this)" method="post">
+                            <form style="display: inline-flex;" action="http://localhost:1015/comment/delete" onsubmit="verificarDeleteComment(event, this)" method="post">
                             <input type="hidden" value="<%= comments.id%>" name="id">
                             <button class="btnDelete" data-tipo="comment">deletar</button>
                             </form>
@@ -127,13 +127,22 @@
 </body>
 <script>
 
-function verificarDelete(event, form) {
+function verificarDeleteComment(event, form) {
+        
         event.preventDefault();
-        var decision = confirm("Deseja Cancelar Comentario?");
+        var decision = confirm("Deseja Deletar Comentario?");
         if (decision) {
             form.submit();
         }
     }
+function verificarDeletePost(event, form) {
+        
+    event.preventDefault();
+    var decision = confirm("Deseja Deletar Post?");
+    if (decision) {
+        form.submit();
+    }
+}    
 
 
     let x = 0

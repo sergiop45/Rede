@@ -29,7 +29,7 @@ Router.get("/home", (req, res) => {
             
         })
     } else {
-        res.render("publicacoes/home2")
+        res.redirect("/login")
     }
 
    
@@ -59,7 +59,7 @@ Router.get("/user/perfil", (req, res) => {
             
         })
     } else {
-        res.render("publicacoes/home2")
+        res.redirect("/login")
     }
 
 

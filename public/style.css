@@ -26,6 +26,7 @@ header a {
     margin-right: 5px;
     text-decoration: none;
     transition: 0.3s;
+    
 }
 header a:hover {
     text-decoration: underline;
@@ -33,16 +34,7 @@ header a:hover {
 }
 main {
     text-align: center;
-    background: linear-gradient(
-    to bottom,  #9900ff, 
-                #8c00ff,
-                #8000ff,
-                #7300ff,
-                #6600ff,
-                #5900ff,
-                #4d00ff,
-                #4000ff,
-                #3300ff);;
+     background-image: linear-gradient(135deg, #ec2dff 0, #9427ff 25%, #111be2 50%, #0011aa 75%, #000078 100%);
 }
 #feed {
     display: flex;
